@@ -4,7 +4,8 @@ resource "aws_cloudtrail" "gogreen_cloudtrail" {
   include_global_service_events = var.include_global_service_events
   is_multi_region_trail         = var.is_multi_region_trail
   enable_log_file_validation    = var.enable_log_file_validation
-
+  kms_key_id                    = var.kms_key
+  
   depends_on = [aws_s3_bucket_policy.cloudtrail_bucket_policy]
 }
 

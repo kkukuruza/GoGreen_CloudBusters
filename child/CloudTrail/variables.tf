@@ -3,6 +3,11 @@ variable "cloudtrail_name" {
   type        = string
 }
 
+variable "kms_key" {
+  description = "The CMK to encrypt CloudTrail logs"
+  type        = string
+}
+
 variable "s3_bucket_name" {
   description = "The name of the S3 bucket used for CloudTrail logs"
   type        = string
