@@ -4,25 +4,28 @@ resource "aws_cloudtrail" "gogreen_cloudtrail" {
   include_global_service_events = var.include_global_service_events
   is_multi_region_trail         = var.is_multi_region_trail
   enable_log_file_validation    = var.enable_log_file_validation
-  kms_key_id                    = var.kms_key
-  
+
   depends_on = [aws_s3_bucket_policy.cloudtrail_bucket_policy]
 }
 
 resource "aws_s3_bucket" "cloudtrail_bucket" {
   bucket        = var.s3_bucket_name
   force_destroy = var.force_destroy
+}
 
-  lifecycle_configuration {
-    rule {
-      status = "Enabled"
+resource "aws_s3_bucket_lifecycle_configuration" "cloudtrail_bucket_lifecycle" {
 
-      transition {
-        days          = var.transition_days
-        storage_class = "GLACIER"
-      }
+  rule {
+    id = "CloudTrail Rule"
+    status = "Enabled"
+
+    transition {
+      days          = var.transition_days
+      storage_class = "GLACIER"
     }
   }
+
+  bucket = aws_s3_bucket.cloudtrail_bucket.id
 }
 
 resource "aws_s3_bucket_policy" "cloudtrail_bucket_policy" {

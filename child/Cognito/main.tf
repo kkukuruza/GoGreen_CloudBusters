@@ -35,9 +35,9 @@ resource "aws_cognito_user_pool" "gogreen_user_pool" {
   auto_verified_attributes = ["email"]
 }
 
-resource "aws_cognito_user_pool_client" "this" {
+resource "aws_cognito_user_pool_client" "gogreen_user_pool_client" {
   name         = "${var.user_pool_name}-client"
-  user_pool_id = aws_cognito_user_pool.gogreen_cognito.id
+  user_pool_id = aws_cognito_user_pool.gogreen_user_pool.id
 
   explicit_auth_flows = [
     "ALLOW_USER_SRP_AUTH",
