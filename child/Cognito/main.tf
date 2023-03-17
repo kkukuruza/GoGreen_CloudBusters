@@ -45,8 +45,8 @@ resource "aws_cognito_user_pool_client" "gogreen_user_pool_client" {
   ]
 
   supported_identity_providers = ["COGNITO"]
-  callback_urls                = ["https://www.example.com/callback"]
-  logout_urls                  = ["https://www.example.com/logout"]
+  callback_urls                = ["https://www.cloudbusters.click/callback"]
+  logout_urls                  = ["https://www.cloudbusters.click/logout"]
   allowed_oauth_flows          = ["code", "implicit"]
   allowed_oauth_scopes         = ["email", "openid", "profile"]
   allowed_oauth_flows_user_pool_client = true
