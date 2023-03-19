@@ -15,6 +15,7 @@ variable "instance_class" {
 variable "security_group_db_id" {
   type = list(string)
   description = "A list of security group IDs to associate with the DB"
+  default = []
 }
 
 variable "kem_key_arn" {
@@ -24,5 +25,5 @@ variable "kem_key_arn" {
 
 variable "subnet_ids" {
   type = list(string)
-  description = []
+  default = []
 }
