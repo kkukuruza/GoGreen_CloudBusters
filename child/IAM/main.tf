@@ -73,7 +73,7 @@ resource "aws_iam_group_policy_attachment" "dbadmin_policy_attachments" {
 resource "aws_iam_role" "ec2tos3iamrole" {
  name = var.role 
  assume_role_policy = jsonencode({
-    {
+    
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -179,8 +179,7 @@ resource "aws_iam_role" "ec2tos3iamrole" {
             "Resource": "*"
         }
     ]
-}
- 
+    
  })
  }
 
