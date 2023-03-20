@@ -1,43 +1,37 @@
-#Create Users
-
 variable "monitor_users" {
-  type = list 
+  type    = list(any)
   default = ["monitoruser1", "monitoruser2", "monitoruser3", "monitoruser4"]
 }
 
 variable "sysadmin_users" {
-  type = list 
+  type    = list(any)
   default = ["sysadmin1", "sysadmin2"]
 }
 
 variable "dbadmin_users" {
-  type = list 
+  type    = list(any)
   default = ["dbadmin1", "dbadmin2"]
 }
 
-#Create groups
-
 variable "monitor_group" {
-  type = string
+  type    = string
   default = "Monitor"
 }
 
 variable "sysadmin_group" {
-  type = string
+  type    = string
   default = "SysAdmin"
 }
 
 variable "dbadmin_group" {
-  type = string
+  type    = string
   default = "DBAdmin"
 }
-
-#Attach policies to groups 
 
 variable "policy_arns_monitor" {
   description = "List of ARNs for the monitor group"
   type        = list(string)
-  default     = [
+  default = [
     "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
     "arn:aws:iam::aws:policy/AmazonRDSReadOnlyAccess",
     "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
@@ -47,7 +41,7 @@ variable "policy_arns_monitor" {
 variable "policy_arns_dbadmin" {
   description = "List of ARNs for the dbadmin group"
   type        = list(string)
-  default     = [
+  default = [
     "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
   ]
 }
@@ -55,34 +49,14 @@ variable "policy_arns_dbadmin" {
 variable "policy_arns_sysadmin" {
   description = "List of ARNs for the sysadmin group"
   type        = list(string)
-  default     = [
+  default = [
     "arn:aws:iam::aws:policy/AdministratorAccess"
   ]
 }
-
-#Create a role
-
 variable "role" {
-  type = string
+  type    = string
   default = "EC2toS3IAMRole"
 }
-
-#Attach policy to role
-
-/*variable "policy_arns_role" {
-  description = "List of ARNs for the role"
-  type        = list(string)
-  default     = [
-    "arn:aws:iam::953103647252:policy/EC2toS3IAMRole"
-  ]
-}*/
-
-variable "role_policy" {
-  type = string
-  default = "arn:aws:iam::953103647252:policy/EC2toS3IAMRole"
-}
-
-#Password policy
 
 variable "minimum_password_length" {
   type        = number
@@ -135,7 +109,7 @@ variable "password_reuse_prevention" {
 #MFA policy for admin groups
 
 variable "require_mfa_policy" {
-  type = string
-  default = "MFA Policy"
+  type    = string
+  default = "mfa-policy"
 }
 
