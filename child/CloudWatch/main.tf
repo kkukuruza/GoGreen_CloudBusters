@@ -4,6 +4,12 @@ resource "aws_sns_topic" "sns_topic" {
   name = var.sns_topic_name
 }
 
+resource "aws_sns_topic_subscription" "email_subscription" {
+  topic_arn = aws_sns_topic.sns_topic.arn
+  protocol  = "email"
+  endpoint  = var.endpoint
+}
+
 resource "aws_cloudwatch_log_metric_filter" "http_400_errors" {
   name           = "HTTP/400 Errors"
   pattern        = "{ $.httpResponseCode = 400 }"
