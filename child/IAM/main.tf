@@ -270,7 +270,7 @@ resource "aws_iam_policy" "require_mfa_policy" {
         Resource = "*"
         Condition = {
           BoolIfExists = {
-            aws:MultiFactorAuthPresent = false
+            "aws:MultiFactorAuthPresent" = false
           }
         }
       }
