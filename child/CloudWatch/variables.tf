@@ -27,11 +27,7 @@ variable "log_group_name" {
   description = "The name of the CloudWatch Logs log group to filter"
 }
 
-variable "sns_topic_name" {
-  description = "The name of the SNS topic to create"
-}
-
-variable "endpoint" {
+variable "sns_topic" {
   type        = string
-  description = "admins_email"
+  description = "sns_topic_name"
 }

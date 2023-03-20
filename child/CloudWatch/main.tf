@@ -1,15 +1,5 @@
 #cloudwatch
 
-resource "aws_sns_topic" "sns_topic" {
-  name = var.sns_topic_name
-}
-
-resource "aws_sns_topic_subscription" "email_subscription" {
-  topic_arn = aws_sns_topic.sns_topic.arn
-  protocol  = "email"
-  endpoint  = var.endpoint
-}
-
 resource "aws_cloudwatch_log_metric_filter" "http_400_errors" {
   name           = "HTTP/400 Errors"
   pattern        = "{ $.httpResponseCode = 400 }"
@@ -31,7 +21,7 @@ resource "aws_cloudwatch_metric_alarm" "http_400_error_rate" {
   period              = 60
   threshold           = var.error_threshold
   alarm_description   = var.alarm_description
-  alarm_actions = [aws_sns_topic.arn]
+  alarm_actions = [var.sns_topic]
 
   dimensions = {
     LogGroupName = var.log_group_name
