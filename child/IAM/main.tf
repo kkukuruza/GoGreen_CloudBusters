@@ -226,7 +226,7 @@ resource "aws_iam_account_password_policy" "password_policy" {
   max_password_age = var.max_password_age
   password_reuse_prevention = var.password_reuse_prevention
 }
-
+/*
 #Create policy for monitor group 
 
 resource "aws_iam_group_policy" "password_policy_monitor" {
@@ -253,7 +253,7 @@ resource "aws_iam_group_policy_attachment" "password_policy_attachment_monitor" 
   group = var.monitor_group
   policy_arn = aws_iam_account_password_policy.password_policy.arn
 }
-
+*/
 # Enable MFA for admin groups
 
 # Create the IAM policy that requires MFA

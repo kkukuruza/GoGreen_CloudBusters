@@ -132,13 +132,6 @@ variable "password_reuse_prevention" {
   default     = 3
 }
 
-#Password policy for monitor group
-
-variable "password_policy_monitor_group" {
-  type = string
-  default = "Monitor Password Policy"
-}
-
 #MFA policy for admin groups
 
 variable "require_mfa_policy" {
