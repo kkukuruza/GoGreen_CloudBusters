@@ -10,5 +10,5 @@ variable "kms_key_description" {
 
 variable "user_arn" {
   description = "The ARN of the IAM user to attach the KMS key."
-  type        = string
+  type        = map(string)
 }

@@ -10,8 +10,9 @@ resource "aws_kms_alias" "user_key_alias" {
 }
 
 resource "aws_kms_grant" "user_grant" {
+  for_each          = var.user_arn
   name              = "kms-grant-user"
   key_id            = aws_kms_key.admin_key.key_id
-  grantee_principal = var.user_arn
+  grantee_principal = each.value
   operations        = ["Encrypt", "Decrypt", "GenerateDataKey", "ReEncryptFrom", "ReEncryptTo", "DescribeKey", "CreateGrant", "RetireGrant"]
 }

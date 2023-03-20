@@ -8,6 +8,13 @@ output "sysadmin_users" {
   description = "List of sysadmin users"
 }
 
+output "sysadmin_users_arn" {
+  value = {
+    for idx, user in aws_iam_user.sysadmin_users : idx => user.arn
+  }
+  description = "List of sysadmin users"
+}
+
 output "dbadmin_users" {
   value       = aws_iam_user.dbadmin_users[*].name
   description = "List of dbadmin users"

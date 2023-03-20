@@ -23,7 +23,7 @@ resource "aws_s3_bucket_acl" "go_green" {
 resource "aws_s3_bucket_versioning" "go_green" {
   bucket = aws_s3_bucket.go_green.id
   versioning_configuration {
-    status = "Enabled"
+    status = var.versioning
   }
 }
 

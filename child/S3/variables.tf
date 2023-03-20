@@ -7,3 +7,9 @@ variable "kms_key_id" {
   type        = string
   description = "The ARN of the KMS key to be used for encryption"
 }
+
+variable "versioning" {
+  type        = string
+  default = "Enabled"
+}
+
