@@ -29,12 +29,16 @@ resource "aws_s3_bucket_versioning" "go_green" {
 
 resource "aws_s3_bucket_lifecycle_configuration" "go_green" {
   rule {
-    id      = "transition-to-glacier"
+    id      = "transition-to-glacier-and-expire"
     status = "Enabled"
 
     transition {
       days          = 90
       storage_class = "GLACIER"
+    }
+
+    expiration {
+      days = 1825
     }
   }
 
