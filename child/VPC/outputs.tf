@@ -1,33 +1,33 @@
-output "public_subnet_id" {
-  value = aws_subnet.public_subnet.id
+output "public_subnet_1_id" {
+  value = aws_subnet.public_subnet_1.id
 }
 
-output "public_subnet2_id" {
-  value = aws_subnet.public_subnet2.id
+output "public_subnet_2_id" {
+  value = aws_subnet.public_subnet_2.id
 }
 
 output "private_subnet_id" {
-  value = aws_subnet.private_subnet.id
+  value = aws_subnet.private_subnet_1.id
 }
 
-output "private_subnet2_id" {
-  value = aws_subnet.private_subnet2.id
+output "private_subnet_2_id" {
+  value = aws_subnet.private_subnet_2.id
 }
 
-output "private_subnet3_id" {
-  value = aws_subnet.private_subnet3.id
+output "private_subnet_3_id" {
+  value = aws_subnet.private_subnet_3.id
 }
 
-output "private_subnet4_id" {
-  value = aws_subnet.private_subnet4.id
+output "private_subnet_4_id" {
+  value = aws_subnet.private_subnet_4.id
 }
 
-output "private_subnet5_id" {
-  value = aws_subnet.private_subnet5.id
+output "private_subnet_5_id" {
+  value = aws_subnet.private_subnet_5.id
 }
 
-output "private_subnet6_id" {
-  value = aws_subnet.private_subnet6.id
+output "private_subnet_6_id" {
+  value = aws_subnet.private_subnet_6.id
 }
 
 output "security_group_ids" {
