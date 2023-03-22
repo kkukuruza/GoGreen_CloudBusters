@@ -3,7 +3,7 @@ variable "rate_limit" {
   default     = 500
 }
 
-variable "lb_arn" {
+variable "alb_arn" {
   description = "ARN of the load balancer to associate with the WAF WebACL."
   type        = string
 }

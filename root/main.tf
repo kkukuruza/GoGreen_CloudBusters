@@ -25,6 +25,12 @@ module "S3" {
 
 }
 
+module "WAF" {
+  source = "../child/WAF/"
+  alb_arn = module.ALB.alb_arn
+
+}
+
 module "Cognito" {
   source = "../child/Cognito/"
   user_pool_name = "gogreen-pool"

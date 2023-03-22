@@ -91,6 +91,6 @@ resource "aws_wafv2_web_acl" "gogreen_waf" {
 }
 
 resource "aws_wafv2_web_acl_association" "gogreen_waf_association" {
-  resource_arn = var.lb_arn
+  resource_arn = var.alb_arn
   web_acl_arn  = aws_wafv2_web_acl.gogreen_waf.arn
 }
