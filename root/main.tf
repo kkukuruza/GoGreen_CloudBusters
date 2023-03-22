@@ -62,7 +62,7 @@ module "ASG" {
   source = "../child/ASG/"
   name = "ASG-Webtier"
   tag_name = "go_green_ASG"
-  ami_id = module.EC2_Template.launch_template_id
-  vpc_zone_identifier = [module.VPC.VPC_id]
+  launch_template_id = module.EC2_Template.launch_template_id
+  vpc_zone_identifier = [module.VPC.private_subnet_1_id, module.VPC.private_subnet_2_id]
   target_group_arns = [module.ALB.target_group_arns]
 }
