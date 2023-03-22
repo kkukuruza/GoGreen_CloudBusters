@@ -54,7 +54,7 @@ module "ALB" {
   subnets  = [module.VPC.private_subnet_1_id, module.VPC.private_subnet_2_id]
   vpc_id = module.VPC.VPC_id
   security_group_ids = module.VPC.security_group_ids
-  target_group_port = "8080"
+  target_group_port = "80"
   
 }
 
