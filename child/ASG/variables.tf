@@ -1,4 +1,4 @@
-variable "name" {
+variable "asg_name" {
   type = string
 }
 
@@ -38,6 +38,6 @@ variable "target_group_arns" {
   description = "A list of target group ARNs to associate with the Auto Scaling group"
 }
 
-variable "tag_name" {
+variable "asg_tag" {
   type = string
 }

@@ -1,5 +1,5 @@
 resource "aws_autoscaling_group" "go_green" {
-  name                 = var.name
+  name                 = "ASG-${var.asg_name}-tier"
   desired_capacity     = var.desired_capacity
   min_size             = var.min_size
   max_size             = var.max_size
@@ -12,7 +12,7 @@ resource "aws_autoscaling_group" "go_green" {
 
   tag {
     key                 = "Name"
-    value               = var.name
+    value               = "${var.asg_tag}-tier"
     propagate_at_launch = true 
   }
 }
