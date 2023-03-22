@@ -29,7 +29,7 @@ module "EC2_Template" {
   source = "../child/EC2_Template/"
   template_name = "web"
   ami_id = "ami-02f3f602d23f1659d"
-  security_group_ids = [module.VPC.security_group_ids[2]]
+  security_group_ids = [module.VPC.security_group_ids[1]]
   iam_instance_profile = module.IAM.ec2tos3iamrole
   tag_name = "web"
 }
@@ -40,7 +40,7 @@ module "ALB" {
   tg_name = "web"
   subnets  = [module.VPC.private_subnet_1_id, module.VPC.private_subnet_2_id]
   vpc_id = module.VPC.VPC_id
-  security_group_ids = module.VPC.security_group_ids
+  security_group_ids = module.VPC.security_group_ids[0]
   target_group_port = "80"
   
 }
