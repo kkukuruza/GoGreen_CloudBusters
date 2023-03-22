@@ -10,7 +10,7 @@ resource "aws_launch_template" "go_green_tmp" {
     name = var.iam_instance_profile
   }
 
-  user_data = var.user_data
+  user_data = file("${path.module}/userdata/userdata.txt")
 
   tags = {
     Name = var.tag_name

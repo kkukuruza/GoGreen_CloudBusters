@@ -41,3 +41,7 @@ variable "target_group_arns" {
   default     = []
   description = "A list of target group ARNs to associate with the Auto Scaling group"
 }
+
+variable "tag_name" {
+  type = string
+}

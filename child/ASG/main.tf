@@ -13,5 +13,6 @@ resource "aws_autoscaling_group" "go_green" {
   tag {
     key                 = "Name"
     value               = var.name
+    propagate_at_launch = true 
   }
 }

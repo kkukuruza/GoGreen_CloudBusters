@@ -18,9 +18,9 @@ variable "security_group_ids" {
 }
 
 variable "scheme" {
-  type = string
+  type = bool
   description = "The scheme of the load balancer, either 'internet-facing' or 'internal'"
-  default = "internet-facing"
+  default = false
 }
 
 variable "target_group_port" {

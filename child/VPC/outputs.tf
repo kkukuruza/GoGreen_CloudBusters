@@ -39,3 +39,7 @@ output "security_group_ids" {
     aws_security_group.db_sg.id
  ]
 }
+
+output "VPC_id" {
+  value = aws_vpc.go_green_vpc.id
+}
