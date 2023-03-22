@@ -24,3 +24,9 @@ module "S3" {
   kms_key_id = module.KMS.kms_key_id
 
 }
+
+module "Cognito" {
+  source = "../child/Cognito/"
+  user_pool_name = "gogreen-pool"
+
+}

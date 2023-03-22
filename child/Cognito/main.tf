@@ -5,7 +5,7 @@ resource "aws_cognito_user_pool" "gogreen_user_pool" {
     minimum_length    = 8
     require_lowercase = true
     require_numbers   = true
-    require_symbols   = true 
+    require_symbols   = false 
     require_uppercase = true
   }
 
@@ -33,6 +33,10 @@ resource "aws_cognito_user_pool" "gogreen_user_pool" {
   }
 
   auto_verified_attributes = ["email"]
+
+  admin_create_user_config {
+    allow_admin_create_user_only = true
+  }
 }
 
 resource "aws_cognito_user_pool_client" "gogreen_user_pool_client" {
