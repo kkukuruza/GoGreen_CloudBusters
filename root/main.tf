@@ -54,10 +54,6 @@ module "ASG" {
   target_group_arns = [module.ALB.target_group_arns]
 }
 
-module "Route53" {
-  source = "../child/Route53/"
-}
-
 module "WAF" {
   source = "../child/WAF/"
   alb_arn = module.ALB.alb_arn
