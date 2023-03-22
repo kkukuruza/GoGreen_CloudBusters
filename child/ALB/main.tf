@@ -1,5 +1,5 @@
 resource "aws_lb" "go_green_alb" {
-  name               = var.name
+  name               = "ALB-${var.alb_name}-tier"
   internal           = var.scheme 
   load_balancer_type = "application"
 
@@ -8,7 +8,7 @@ resource "aws_lb" "go_green_alb" {
 }
 
 resource "aws_lb_target_group" "alb_tg" {
- name     = "${var.name}-tg"
+ name     = "${var.tg_name}-tg"
   port     = var.target_group_port
   protocol = "HTTP"
   vpc_id   = var.vpc_id
