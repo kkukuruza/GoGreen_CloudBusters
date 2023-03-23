@@ -54,18 +54,6 @@ module "ASG" {
   target_group_arns = [module.ALB.target_group_arns]
 }
 
-module "WAF" {
-  source = "../child/WAF/"
-  alb_arn = module.ALB.alb_arn
-
-}
-
-module "Cognito" {
-  source = "../child/Cognito/"
-  user_pool_name = "gogreen-pool"
-
-}
-
 module "EC2_Template_app" {
   source = "../child/EC2_Template/"
   template_name = "app"
@@ -95,4 +83,16 @@ module "ASG_app" {
   launch_template_id = module.EC2_Template_app.launch_template_id
   vpc_zone_identifier = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
   target_group_arns = [module.ALB_app.target_group_arns]
+}
+
+module "WAF" {
+  source = "../child/WAF/"
+  alb_arn = module.ALB.alb_arn
+
+}
+
+module "Cognito" {
+  source = "../child/Cognito/"
+  user_pool_name = "gogreen-pool"
+
 }
