@@ -20,3 +20,8 @@ variable "enabled" {
   description = "Whether the CloudFront distribution is enabled"
   default     = true
 }
+
+variable "bucket_website_endpoint" {
+  type        = string
+  default     = ""
+}

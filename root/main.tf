@@ -108,3 +108,10 @@ module "Cognito" {
   user_pool_name = "gogreen-pool"
 
 }
+
+module "CloudFront" {
+  source                  = "../child/CloudFront/"
+  bucket_website_endpoint = module.S3.bucket_website_endpoint
+  bucket_name             = module.S3.bucket_name
+
+}
