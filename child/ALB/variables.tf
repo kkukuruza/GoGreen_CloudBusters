@@ -1,4 +1,4 @@
-variable "name" {
+variable "alb_name" {
   type = string
 }
 
@@ -26,4 +26,8 @@ variable "scheme" {
 variable "target_group_port" {
   type = number
   description = "The port to associate with the target group"
+}
+
+variable "tg_name" {
+  type = string
 }
