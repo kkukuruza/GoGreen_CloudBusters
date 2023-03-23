@@ -1,5 +1,5 @@
 variable "db_subnet_id" {
-  type = string
+  type = list
 }
 
 variable "storage_type" {
@@ -18,7 +18,7 @@ variable "security_group_db_id" {
   default     = []
 }
 
-variable "kem_key_arn" {
+variable "kms_key_arn" {
   type        = string
   description = "The KMS arn to associate with the DB"
 }
@@ -75,7 +75,7 @@ variable "publicly_accessible" {
 
 variable "backup_retention_period" {
   type   = string
-  deault = "0"
+  default = "0"
 }
 
 variable "skip_final_snapshot" {

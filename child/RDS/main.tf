@@ -15,7 +15,7 @@ resource "aws_db_instance" "go_green_db" {
   password                = var.password
   db_subnet_group_name    = aws_db_subnet_group.go_green.name
   vpc_security_group_ids  = var.security_group_db_id
-  kms_key_id              = var.kem_key_arn
+  kms_key_id              = var.kms_key_arn
   multi_az                = var.multi_az
   publicly_accessible     = var.publicly_accessible
   backup_retention_period = var.backup_retention_period
@@ -44,7 +44,7 @@ resource "aws_iam_role" "lambda_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_role_attachment" {
-  policy_arn = aws_iam_role_policy.lambda_policy.arn
+  policy_arn = aws_iam_role_policy.lambda_policy.id
   role       = aws_iam_role.lambda_role.name
 }
 
