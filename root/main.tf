@@ -85,6 +85,12 @@ module "ASG_app" {
   target_group_arns = [module.ALB_app.target_group_arns]
 }
 
+module "RDS" {
+  source  = "../child/RDS"
+  db_subnet_id = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
+  security_group_db_id = [module.VPC.security_group_ids[4]]
+}
+
 module "WAF" {
   source = "../child/WAF/"
   alb_arn = module.ALB.alb_arn
