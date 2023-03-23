@@ -1,4 +1,4 @@
-variable "name" {
+variable "template_name" {
   type = string
 }
 
