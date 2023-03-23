@@ -54,7 +54,7 @@ module "ASG" {
   target_group_arns = [module.ALB.target_group_arns]
 }
 
-module "ASG" {
+module "ASG_policy" {
   source = "../child/ASG_policy/"
   asg_name = module.ASG.asg_name
 }
