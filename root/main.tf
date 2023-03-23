@@ -65,3 +65,34 @@ module "Cognito" {
   user_pool_name = "gogreen-pool"
 
 }
+
+module "EC2_Template_app" {
+  source = "../child/EC2_Template/"
+  template_name = "app"
+  ami_id = "ami-02f3f602d23f1659d"
+  security_group_ids = [module.VPC.security_group_ids[3]]
+  iam_instance_profile = module.IAM.ec2tos3iamrole
+  tag_name = "app"
+}
+
+
+module "ALB_app" {
+  source = "../child/ALB/"
+  alb_name = "app"
+  tg_name = "app"
+  subnets  = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
+  vpc_id = module.VPC.VPC_id
+  security_group_ids = [module.VPC.security_group_ids[2]]
+  target_group_port = "80"
+  scheme = true
+  
+}
+
+module "ASG_app" {
+  source = "../child/ASG/"
+  asg_name = "app"
+  asg_tag = "app"
+  launch_template_id = module.EC2_Template_app.launch_template_id
+  vpc_zone_identifier = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
+  target_group_arns = [module.ALB_app.target_group_arns]
+}
