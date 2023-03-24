@@ -135,3 +135,12 @@ module "Route53" {
   cloudfront_domain_name = module.CloudFront.cloudfront_domain_name
   cloudfront_hosted_zone_id = module.CloudFront.cloudfront_hosted_zone_id
 }
+
+module "Cloudwatch" {
+  source = "../child/CloudWatch"
+  sns_topic          = module.SNS.sns_topic
+}
+
+module "SNS" {
+  source = "../child/SNS"
+}

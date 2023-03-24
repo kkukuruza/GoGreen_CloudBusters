@@ -25,9 +25,11 @@ variable "metric_namespace" {
 variable "log_group_name" {
   type        = string
   description = "The name of the CloudWatch Logs log group to filter"
+  default = "log_group"
 }
 
 variable "sns_topic" {
   type        = string
   description = "sns_topic_name"
+  default = "Alarm"
 }
