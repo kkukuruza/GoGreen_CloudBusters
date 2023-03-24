@@ -3,7 +3,7 @@ resource "aws_route53_zone" "go_green" {
 }
 
 resource "aws_route53_record" "alb" {
-  zone_id = aws_route53_zone.go-green.zone_id
+  zone_id = aws_route53_zone.go_green.zone_id
   name    = var.domain_name 
   type    = "A"
 

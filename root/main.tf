@@ -115,3 +115,23 @@ module "CloudFront" {
   bucket_name             = module.S3.bucket_name
 
 }
+
+module "cloudtrail" {
+  source                        = "../child/CloudTrail"
+  cloudtrail_name               = "cloudtrail"
+  kms_key                       = module.KMS.kms_key_arn
+  s3_bucket_name                = "Cloud_trail_s3_go_green"
+  include_global_service_events = true
+  is_multi_region_trail         = true
+  transition_days               = "30"
+  force_destroy                 = false
+
+}
+
+module "Route53" {
+  source = "../child/Route53"
+  alb_dns_name = module.ALB.alb_arn
+  alb_zone_id = module.ALB.target_group_arns
+  cloudfront_domain_name = module.CloudFront.cloudfront_domain_name
+  cloudfront_hosted_zone_id = module.CloudFront.cloudfront_hosted_zone_id
+}
