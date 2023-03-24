@@ -116,7 +116,7 @@ module "CloudFront" {
 
 }
 
-module "cloudtrail" {
+module "CloudTrail" {
   source                        = "../child/CloudTrail"
   cloudtrail_name               = "cloudtrail"
   kms_key                       = module.KMS.kms_key_arn
@@ -136,7 +136,7 @@ module "Route53" {
   cloudfront_hosted_zone_id = module.CloudFront.cloudfront_hosted_zone_id
 }
 
-module "Cloudwatch" {
+module "CloudWatch" {
   source    = "../child/CloudWatch"
   sns_topic = module.SNS.sns_topic
 }
