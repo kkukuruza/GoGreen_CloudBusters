@@ -3,6 +3,6 @@ output "cloudfront_domain_name" {
   
 }
 
-output "cloudfront_cloudfront_hosted_zone_id" {
+output "cloudfront_hosted_zone_id" {
   value = aws_cloudfront_distribution.distribution.hosted_zone_id
 }
