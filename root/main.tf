@@ -136,7 +136,7 @@ module "Route53" {
   cloudfront_hosted_zone_id = module.CloudFront.cloudfront_hosted_zone_id
 }
 
-module "CloudWatch" {
+module "Cloudwatch" {
   source    = "../child/CloudWatch"
   sns_topic = module.SNS.sns_topic
 }
