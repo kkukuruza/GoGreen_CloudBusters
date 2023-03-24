@@ -41,3 +41,9 @@ variable "target_group_arns" {
 variable "asg_tag" {
   type = string
 }
+
+variable "enable_bandwidth_scaling" {
+  description = "Enable or disable bandwidth-based auto-scaling"
+  type        = bool
+  default     = false
+}

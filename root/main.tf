@@ -46,18 +46,19 @@ module "ALB" {
 }
 
 module "ASG" {
-  source              = "../child/ASG/"
-  asg_name            = "web"
-  asg_tag             = "web"
-  launch_template_id  = module.EC2_Template.launch_template_id
-  vpc_zone_identifier = [module.VPC.private_subnet_1_id, module.VPC.private_subnet_2_id]
-  target_group_arns   = [module.ALB.target_group_arns]
+  source                   = "../child/ASG/"
+  enable_bandwidth_scaling = true
+  asg_name                 = "web"
+  asg_tag                  = "web"
+  launch_template_id       = module.EC2_Template.launch_template_id
+  vpc_zone_identifier      = [module.VPC.private_subnet_1_id, module.VPC.private_subnet_2_id]
+  target_group_arns        = [module.ALB.target_group_arns]
 }
 
-module "ASG_policy" {
-  source   = "../child/ASG_policy/"
-  asg_name = module.ASG.asg_name
-}
+#module "ASG_policy" {
+#  source   = "../child/ASG_policy/"
+#  asg_name = module.ASG.asg_name
+#}
 
 module "EC2_Template_app" {
   source               = "../child/EC2_Template/"
@@ -136,7 +137,7 @@ module "Route53" {
   cloudfront_hosted_zone_id = module.CloudFront.cloudfront_hosted_zone_id
 }
 
-module "Cloudwatch" {
+module "CloudWatch" {
   source    = "../child/CloudWatch"
   sns_topic = module.SNS.sns_topic
 }
