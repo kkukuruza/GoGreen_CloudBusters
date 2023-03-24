@@ -1,24 +1,24 @@
 module "IAM" {
-  source = "../child/IAM/"
+  source = "child/IAM/"
 
 }
 
 module "VPC" {
-  source = "../child/VPC/"
+  source = "child/VPC/"
 
   env_tag = "Test"
 
 }
 
 module "KMS" {
-  source = "../child/KMS/"
+  source = "child/KMS/"
 
   user_arn = module.IAM.sysadmin_users_arn
 
 }
 
 module "S3" {
-  source = "../child/S3/"
+  source = "child/S3/"
 
   bucket_name = "gogreen_cloudbusters_2023"
   kms_key_id  = module.KMS.kms_key_id
@@ -26,7 +26,7 @@ module "S3" {
 }
 
 module "EC2_Template" {
-  source               = "../child/EC2_Template/"
+  source               = "child/EC2_Template/"
   template_name        = "web"
   ami_id               = "ami-02f3f602d23f1659d"
   security_group_ids   = [module.VPC.security_group_ids[1]]
@@ -35,7 +35,7 @@ module "EC2_Template" {
 }
 
 module "ALB" {
-  source             = "../child/ALB/"
+  source             = "child/ALB/"
   alb_name           = "web"
   tg_name            = "web"
   subnets            = [module.VPC.private_subnet_1_id, module.VPC.private_subnet_2_id]
@@ -46,7 +46,7 @@ module "ALB" {
 }
 
 module "ASG" {
-  source              = "../child/ASG/"
+  source              = "child/ASG/"
   asg_name            = "web"
   asg_tag             = "web"
   launch_template_id  = module.EC2_Template.launch_template_id
@@ -55,12 +55,12 @@ module "ASG" {
 }
 
 module "ASG_policy" {
-  source   = "../child/ASG_policy/"
+  source   = "child/ASG_policy/"
   asg_name = module.ASG.asg_name
 }
 
 module "EC2_Template_app" {
-  source               = "../child/EC2_Template/"
+  source               = "child/EC2_Template/"
   template_name        = "app"
   ami_id               = "ami-02f3f602d23f1659d"
   security_group_ids   = [module.VPC.security_group_ids[3]]
@@ -70,7 +70,7 @@ module "EC2_Template_app" {
 
 
 module "ALB_app" {
-  source             = "../child/ALB/"
+  source             = "child/ALB/"
   alb_name           = "app"
   tg_name            = "app"
   subnets            = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
@@ -82,7 +82,7 @@ module "ALB_app" {
 }
 
 module "ASG_app" {
-  source              = "../child/ASG/"
+  source              = "child/ASG/"
   asg_name            = "app"
   asg_tag             = "app"
   launch_template_id  = module.EC2_Template_app.launch_template_id
@@ -91,33 +91,33 @@ module "ASG_app" {
 }
 
 module "RDS" {
-  source               = "../child/RDS"
+  source               = "child/RDS"
   db_subnet_id         = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
   security_group_db_id = [module.VPC.security_group_ids[4]]
   kms_key_arn          = module.KMS.kms_key_arn
 }
 
 module "WAF" {
-  source  = "../child/WAF/"
+  source  = "child/WAF/"
   alb_arn = module.ALB.alb_arn
 
 }
 
 module "Cognito" {
-  source         = "../child/Cognito/"
+  source         = "child/Cognito/"
   user_pool_name = "gogreen-pool"
 
 }
 
 module "CloudFront" {
-  source                  = "../child/CloudFront/"
+  source                  = "child/CloudFront/"
   bucket_website_endpoint = module.S3.bucket_website_endpoint
   bucket_name             = module.S3.bucket_name
 
 }
 
 module "cloudtrail" {
-  source                        = "../child/CloudTrail"
+  source                        = "child/CloudTrail"
   cloudtrail_name               = "cloudtrail"
   kms_key                       = module.KMS.kms_key_arn
   s3_bucket_name                = "Cloud_trail_s3_go_green"
@@ -129,7 +129,7 @@ module "cloudtrail" {
 }
 
 module "Route53" {
-  source                    = "../child/Route53"
+  source                    = "child/Route53"
   alb_dns_name              = module.ALB.alb_arn
   alb_zone_id               = module.ALB.target_group_arns
   cloudfront_domain_name    = module.CloudFront.cloudfront_domain_name
@@ -137,10 +137,10 @@ module "Route53" {
 }
 
 module "Cloudwatch" {
-  source    = "../child/CloudWatch"
+  source    = "child/CloudWatch"
   sns_topic = module.SNS.sns_topic
 }
 
 module "SNS" {
-  source = "../child/SNS"
+  source = "child/SNS"
 }
