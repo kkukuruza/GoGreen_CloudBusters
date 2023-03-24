@@ -57,7 +57,7 @@ module "ASG" {
 
 #module "ASG_policy" {
 #  source   = "../child/ASG_policy/"
-#  asg_name = module.ASG.asg_name
+#  asg_name = module.ASG.asg_name_
 #}
 
 module "EC2_Template_app" {
