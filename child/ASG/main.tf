@@ -76,7 +76,7 @@ resource "aws_cloudwatch_metric_alarm" "high_bandwidth_alarm" {
   statistic           = "SampleCount"
   threshold           = "750"
   alarm_description   = "This metric checks if the average network bandwidth is greater than or equal to 750 Mbps"
-  alarm_actions       = [aws_autoscaling_policy.scale_up_policy.arn]
+  alarm_actions       = aws_autoscaling_policy.scale_down_policy.*.arn
 }
 
 resource "aws_cloudwatch_metric_alarm" "low_bandwidth_alarm" {
@@ -90,7 +90,7 @@ resource "aws_cloudwatch_metric_alarm" "low_bandwidth_alarm" {
   statistic           = "SampleCount"
   threshold           = "300"
   alarm_description   = "This metric checks if the average network bandwidth is less than or equal to 300 Mbps"
-  alarm_actions       = [aws_autoscaling_policy.scale_down_policy.arn]
+  alarm_actions       = aws_autoscaling_policy.scale_up_policy.*.arn
 }
 
 resource "aws_autoscaling_policy" "scale_up_policy" {
