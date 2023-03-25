@@ -20,7 +20,7 @@ module "KMS" {
 module "S3" {
   source = "../child/S3/"
 
-  bucket_name = "gogreen_cloudbusters_2023"
+  bucket_name = "gogreen-cloudbusters-2023"
   kms_key_id  = module.KMS.kms_key_id
 
 }
@@ -93,7 +93,7 @@ module "ASG_app" {
 
 module "RDS" {
   source               = "../child/RDS"
-  db_subnet_id         = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
+  subnet_id         = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
   security_group_db_id = [module.VPC.security_group_ids[4]]
   kms_key_arn          = module.KMS.kms_key_arn
 }
@@ -121,7 +121,7 @@ module "CloudTrail" {
   source                        = "../child/CloudTrail"
   cloudtrail_name               = "cloudtrail"
   kms_key                       = module.KMS.kms_key_arn
-  s3_bucket_name                = "Cloud_trail_s3_go_green"
+  s3_bucket_name                = "cloud-trail-s3-go-green"
   include_global_service_events = true
   is_multi_region_trail         = true
   transition_days               = "30"
@@ -132,7 +132,7 @@ module "CloudTrail" {
 module "Route53" {
   source                    = "../child/Route53"
   alb_dns_name              = module.ALB.alb_arn
-  alb_zone_id               = module.ALB.target_group_arns
+  alb_zone_id               = module.ALB.alb_hosted_zone_id
   cloudfront_domain_name    = module.CloudFront.cloudfront_domain_name
   cloudfront_hosted_zone_id = module.CloudFront.cloudfront_hosted_zone_id
 }

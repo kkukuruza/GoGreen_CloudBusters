@@ -10,10 +10,9 @@ resource "aws_launch_template" "go_green_tmp" {
     name = var.iam_instance_profile
   }
 
-  user_data = file("${path.module}/userdata/userdata.txt")
+  user_data = base64encode(file("${path.module}/userdata/userdata.txt")) 
 
   tags = {
     Name = "${var.tag_name}-tier-template"
   }
-
 }
