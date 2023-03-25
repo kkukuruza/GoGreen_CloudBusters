@@ -1,6 +1,9 @@
-#!/bin/bash 
-sudo su -
+#!/bin/bash
+
 sudo yum update -y
+sudo yum install -y amazon-ssm-agent
+sudo systemctl enable amazon-ssm-agent
+sudo systemctl start amazon-ssm-agent
 sudo yum -y install httpd 
 sudo yum -y install php 
 sudo yum -y install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
