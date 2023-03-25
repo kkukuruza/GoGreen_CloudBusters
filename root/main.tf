@@ -93,7 +93,7 @@ module "ASG_app" {
 
 module "RDS" {
   source               = "../child/RDS"
-  subnet_id         = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
+  subnet_ids         = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
   security_group_db_id = [module.VPC.security_group_ids[4]]
   kms_key_arn          = module.KMS.kms_key_arn
 }
