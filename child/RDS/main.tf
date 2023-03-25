@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "go_green" {
   name       = "db-subnet-group"
-  subnet_ids = var.subnet_ids
+  subnet_ids = var.db_subnet_ids
 }
 
 resource "aws_db_instance" "go_green_db" {
@@ -44,8 +44,8 @@ resource "aws_iam_role" "lambda_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_role_attachment" {
-  policy_arn = aws_iam_role_policy.lambda_policy.policy
-  role       = aws_iam_role.lambda_role.arn
+  policy_arn = aws_iam_role_policy.lambda_policy.arn
+  role       = aws_iam_role.lambda_role.name
 }
 
 resource "aws_iam_role_policy" "lambda_policy" {

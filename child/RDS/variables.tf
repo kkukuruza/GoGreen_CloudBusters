@@ -1,6 +1,6 @@
 variable "db_subnet_id" {
   type = list(string)
-  default = [ ]
+  default = []
 }
 
 variable "storage_type" {
@@ -22,11 +22,6 @@ variable "security_group_db_id" {
 variable "kms_key_arn" {
   type        = string
   description = "The KMS arn to associate with the DB"
-}
-
-variable "subnet_ids" {
-  type    = list(string)
-  default = []
 }
 
 variable "identifier" {
