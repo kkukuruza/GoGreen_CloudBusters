@@ -262,8 +262,8 @@ resource "aws_security_group" "web_sg" {
   description = "Allow inbound traffic on port 8080 from ALB-SG"
   vpc_id      = aws_vpc.go_green_vpc.id
   ingress {
-    from_port       = 8080
-    to_port         = 8080
+    from_port       = 80
+    to_port         = 80
     protocol        = "tcp"
     security_groups = [aws_security_group.alb_sg.id]
   }
@@ -286,8 +286,8 @@ resource "aws_security_group" "app_sg" {
   description = "Allow inbound traffic on port 8080 from ALBP-SG"
   vpc_id      = aws_vpc.go_green_vpc.id
   ingress {
-    from_port       = 8080
-    to_port         = 8080
+    from_port       = 80
+    to_port         = 80
     protocol        = "tcp"
     security_groups = [aws_security_group.alb_private_sg.id]
   }
