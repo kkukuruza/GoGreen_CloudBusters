@@ -99,6 +99,11 @@ resource "aws_iam_role_policy_attachment" "ec2tos3iamrole_policy" {
   role       = aws_iam_role.ec2tos3iamrole.name
 }
 
+resource "aws_iam_instance_profile" "ec2tos3_instance_profile" {
+  name = "ec2tos3-instance-profile"
+  role = aws_iam_role.ec2tos3iamrole.name
+}
+
 # Setup password policy
 
 resource "aws_iam_account_password_policy" "password_policy" {
