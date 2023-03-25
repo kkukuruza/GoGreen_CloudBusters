@@ -1,4 +1,5 @@
 variable "rate_limit" {
+  type = number
   description = "Rate limit for IP addresses (requests per 5 minutes)."
   default     = 500
 }

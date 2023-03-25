@@ -39,3 +39,8 @@ output "ec2tos3iamrole" {
   value       = aws_iam_role.ec2tos3iamrole.arn
   description = "ARN of the created IAM role"
 }
+
+output "ec2tos3iamrole_name" {
+  value       = aws_iam_role.ec2tos3iamrole.name
+  description = "ARN of the created IAM role"
+}

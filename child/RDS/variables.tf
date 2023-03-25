@@ -1,5 +1,6 @@
 variable "db_subnet_id" {
-  type = list
+  type = list(string)
+  default = [ ]
 }
 
 variable "storage_type" {

@@ -30,7 +30,7 @@ module "EC2_Template" {
   template_name        = "web"
   ami_id               = "ami-07bc04fdc13241142"
   security_group_ids   = [module.VPC.security_group_ids[1]]
-  iam_instance_profile = module.IAM.ec2tos3iamrole
+  iam_instance_profile = module.IAM.ec2tos3iamrole_name
   tag_name             = "web"
 }
 
@@ -65,7 +65,7 @@ module "EC2_Template_app" {
   template_name        = "app"
   ami_id               = "ami-07bc04fdc13241142"
   security_group_ids   = [module.VPC.security_group_ids[3]]
-  iam_instance_profile = module.IAM.ec2tos3iamrole
+  iam_instance_profile = module.IAM.ec2tos3iamrole_name
   tag_name             = "app"
 }
 
@@ -93,7 +93,7 @@ module "ASG_app" {
 
 module "RDS" {
   source               = "../child/RDS"
-  db_subnet_id         = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
+  db_subnet_id         = ["${module.VPC.private_subnet_5_id}", "${module.VPC.private_subnet_6_id}"]
   security_group_db_id = [module.VPC.security_group_ids[4]]
   kms_key_arn          = module.KMS.kms_key_arn
   lambda_function_payload_path = "../child/RDS/lambda_function_payload.zip"
