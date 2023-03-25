@@ -20,6 +20,7 @@ variable "security_group_ids" {
 variable "iam_instance_profile" {
   type = string
   description = "The IAM instance profile to associate with the instances"
+  default = ""
 }
 
 variable "user_data" {

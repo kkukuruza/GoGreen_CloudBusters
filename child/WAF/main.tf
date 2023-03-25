@@ -8,6 +8,37 @@ resource "aws_wafv2_web_acl" "gogreen_waf" {
   }
 
   rule {
+  name     = "XSSRule"
+  priority = 2
+  action {
+    block {}
+  }
+  statement {
+    managed_rule_group_statement {
+      name        = "AWSManagedRulesCommonRuleSet"
+      vendor_name = "AWS"
+
+      excluded_rule {
+        name = "SizeRestrictions_QUERYSTRING"
+      }
+
+      excluded_rule {
+        name = "NoUserAgent_HEADER"
+      }
+
+      excluded_rule {
+        name = "SizeRestrictions_BODY"
+      }
+    }
+  }
+  visibility_config {
+    cloudwatch_metrics_enabled = false
+    metric_name                = "XSSRule"
+    sampled_requests_enabled   = false
+  }
+}
+
+  rule {
     name     = "SQLiRule"
     priority = 1
     action {
