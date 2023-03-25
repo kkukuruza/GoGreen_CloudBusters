@@ -28,7 +28,7 @@ resource "aws_s3_bucket" "rds_snapshots" {
 }
 
 resource "aws_iam_role" "lambda_role" {
-  name = "lambda_role"
+  name = "rdsrole"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -49,7 +49,7 @@ resource "aws_iam_role_policy_attachment" "lambda_role_attachment" {
 }
 
 resource "aws_iam_role_policy" "lambda_policy" {
-  name = "lambda_policy"
+  name = "rdspolicy"
   role = aws_iam_role.lambda_role.name
   policy = jsonencode({
     Version = "2012-10-17"
@@ -70,7 +70,7 @@ resource "aws_iam_role_policy" "lambda_policy" {
 }
 
 resource "aws_lambda_function" "lambda_function" {
-  filename      = "lambda_function_payload.zip"
+  filename      = var.lambda_function_payload_path
   function_name = "lambda_function"
   role          = aws_iam_role.lambda_role.arn
   handler       = "index.handler"

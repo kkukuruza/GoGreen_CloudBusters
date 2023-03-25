@@ -83,3 +83,7 @@ variable "skip_final_snapshot" {
   default = "true"
 }
 
+variable "lambda_function_payload_path" {
+  type        = string
+  description = "Path to the Lambda function payload zip file"
+}

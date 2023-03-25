@@ -28,7 +28,7 @@ module "S3" {
 module "EC2_Template" {
   source               = "../child/EC2_Template/"
   template_name        = "web"
-  ami_id               = "ami-02f3f602d23f1659d"
+  ami_id               = "ami-07bc04fdc13241142"
   security_group_ids   = [module.VPC.security_group_ids[1]]
   iam_instance_profile = module.IAM.ec2tos3iamrole
   tag_name             = "web"
@@ -63,7 +63,7 @@ module "ASG" {
 module "EC2_Template_app" {
   source               = "../child/EC2_Template/"
   template_name        = "app"
-  ami_id               = "ami-02f3f602d23f1659d"
+  ami_id               = "ami-07bc04fdc13241142"
   security_group_ids   = [module.VPC.security_group_ids[3]]
   iam_instance_profile = module.IAM.ec2tos3iamrole
   tag_name             = "app"
@@ -96,6 +96,7 @@ module "RDS" {
   db_subnet_id         = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
   security_group_db_id = [module.VPC.security_group_ids[4]]
   kms_key_arn          = module.KMS.kms_key_arn
+  lambda_function_payload_path = "../child/RDS/lambda_function_payload.zip"
 }
 
 module "WAF" {
@@ -131,7 +132,7 @@ module "CloudTrail" {
 
 module "Route53" {
   source                    = "../child/Route53"
-  alb_dns_name              = module.ALB.alb_arn
+  alb_dns_name              = module.ALB.alb_dns_name
   alb_zone_id               = module.ALB.alb_hosted_zone_id
   cloudfront_domain_name    = module.CloudFront.cloudfront_domain_name
   cloudfront_hosted_zone_id = module.CloudFront.cloudfront_hosted_zone_id

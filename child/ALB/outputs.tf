@@ -10,3 +10,7 @@ output "target_group_arns" {
 output "alb_hosted_zone_id" {
   value = aws_lb.go_green_alb.zone_id
 }
+
+output "alb_dns_name" {
+  value = aws_lb.go_green_alb.dns_name
+}
