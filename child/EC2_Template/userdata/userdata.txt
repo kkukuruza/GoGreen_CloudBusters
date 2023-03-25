@@ -1,7 +1,12 @@
 #!/bin/bash -ex
-yum -y install httpd php mysql php-mysql
-chkconfig httpd on
-service httpd start
+sudo su -
+yum -y install httpd 
+yum -y install php 
+sudo yum -y install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+sudo yum -y install mysql-community-client
+sudo yum -y install php-mysqlnd
+systemctl enable httpd 
+systemctl start httpd 
 if [ ! -f /var/www/html/lab-app.tgz ]; then
 cd /var/www/html
 wget https://aws-tc-largeobjects.s3-us-west-2.amazonaws.com/CUR-TF-200-ACACAD/studentdownload/lab-app.tgz

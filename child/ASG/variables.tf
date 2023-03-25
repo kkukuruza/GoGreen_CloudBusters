@@ -14,12 +14,12 @@ variable "vpc_zone_identifier" {
 
 variable "min_size" {
   type = number
-  default = 1
+  default = 2
 }
 
 variable "max_size" {
   type = number
-  default = 3
+  default = 4
 }
 
 variable "desired_capacity" {
