@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "go_green" {
   name       = "db-subnet-group"
-  db_subnet_ids = var.subnet_ids
+  db_subnet_id = var.subnet_ids
 }
 
 resource "aws_db_instance" "go_green_db" {
