@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "go_green" {
   name       = "db-subnet-group"
-  db_subnet_id = var.subnet_ids
+  subnet_ids = var.subnet_ids
 }
 
 resource "aws_db_instance" "go_green_db" {
@@ -50,7 +50,7 @@ resource "aws_iam_role_policy_attachment" "lambda_role_attachment" {
 
 resource "aws_iam_role_policy" "lambda_policy" {
   name = "lambda_policy"
-  role = aws_iam_role.lambda_role.id
+  role = aws_iam_role.lambda_role.arn
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
