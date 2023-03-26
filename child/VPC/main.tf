@@ -10,6 +10,7 @@ resource "aws_vpc" "go_green_vpc" {
 resource "aws_subnet" "public_subnet_1" {
   cidr_block = var.public_subnet_1
   vpc_id     = aws_vpc.go_green_vpc.id
+  availability_zone = "us-west-1a"
   tags = {
     "Name" = "${var.vpc_tag} Public Subnet 1"
   }
@@ -18,6 +19,7 @@ resource "aws_subnet" "public_subnet_1" {
 resource "aws_subnet" "public_subnet_2" {
   cidr_block = var.public_subnet_2
   vpc_id     = aws_vpc.go_green_vpc.id
+  availability_zone = "us-west-1b"
   tags = {
     "Name" = "${var.vpc_tag} Public Subnet 2"
   }
@@ -26,6 +28,7 @@ resource "aws_subnet" "public_subnet_2" {
 resource "aws_subnet" "private_subnet_1" {
   cidr_block = var.private_subnet_1
   vpc_id     = aws_vpc.go_green_vpc.id
+  availability_zone = "us-west-1a"
   tags = {
     "Name" = "${var.vpc_tag} Web Tier 1"
   }
@@ -34,6 +37,7 @@ resource "aws_subnet" "private_subnet_1" {
 resource "aws_subnet" "private_subnet_2" {
   cidr_block = var.private_subnet_2
   vpc_id     = aws_vpc.go_green_vpc.id
+  availability_zone = "us-west-1b"
   tags = {
     "Name" = "${var.vpc_tag} Web Tier 2"
   }
@@ -42,6 +46,7 @@ resource "aws_subnet" "private_subnet_2" {
 resource "aws_subnet" "private_subnet_3" {
   cidr_block = var.private_subnet_3
   vpc_id     = aws_vpc.go_green_vpc.id
+  availability_zone = "us-west-1a"
   tags = {
     "Name" = "${var.vpc_tag} App Tier 1"
   }
@@ -50,6 +55,7 @@ resource "aws_subnet" "private_subnet_3" {
 resource "aws_subnet" "private_subnet_4" {
   cidr_block = var.private_subnet_4
   vpc_id     = aws_vpc.go_green_vpc.id
+  availability_zone = "us-west-1b"
   tags = {
     "Name" = "${var.vpc_tag} App Tier 2"
   }
@@ -58,6 +64,7 @@ resource "aws_subnet" "private_subnet_4" {
 resource "aws_subnet" "private_subnet_5" {
   cidr_block = var.private_subnet_5
   vpc_id     = aws_vpc.go_green_vpc.id
+  availability_zone = "us-west-1a"
   tags = {
     "Name" = "${var.vpc_tag} DB Tier 1"
   }
@@ -66,6 +73,7 @@ resource "aws_subnet" "private_subnet_5" {
 resource "aws_subnet" "private_subnet_6" {
   cidr_block = var.private_subnet_6
   vpc_id     = aws_vpc.go_green_vpc.id
+  availability_zone = "us-west-1b"
   tags = {
     "Name" = "${var.vpc_tag} DB Tier 2"
   }
