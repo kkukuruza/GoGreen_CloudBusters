@@ -38,7 +38,7 @@ module "ALB" {
   source             = "../child/ALB/"
   alb_name           = "web"
   tg_name            = "web"
-  subnets            = [module.VPC.public_subnet_1_id, module.VPC.public_subnet_1_id]
+  subnets            = [module.VPC.public_subnet_1_id, module.VPC.public_subnet_2_id]
   vpc_id             = module.VPC.VPC_id
   security_group_ids = [module.VPC.security_group_ids[0]]
   target_group_port  = "80"
