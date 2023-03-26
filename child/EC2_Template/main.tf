@@ -12,6 +12,10 @@ resource "aws_launch_template" "go_green_tmp" {
 
   user_data = base64encode(file("${path.module}/userdata/userdata.sh")) 
 
+  network_interfaces {
+    associate_public_ip_address = true
+  }
+
   tags = {
     Name = "${var.tag_name}-tier-template"
   }
