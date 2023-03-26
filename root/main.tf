@@ -78,7 +78,6 @@ module "ALB_app" {
   vpc_id             = module.VPC.VPC_id
   security_group_ids = [module.VPC.security_group_ids[2]]
   target_group_port  = "80"
-  scheme             = true
 
 }
 

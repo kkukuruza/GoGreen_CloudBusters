@@ -396,9 +396,9 @@ resource "aws_network_acl_rule" "web_allow_inbound" {
   network_acl_id = aws_network_acl.web.id
   rule_number    = 100
   egress         = false
-  protocol       = "tcp"
+  protocol       = "all"
   rule_action    = "allow"
-  cidr_block     = "10.10.5.0/23"
+  cidr_block     = "10.10.0.0/16"
   from_port      = 0
   to_port        = 65535
 }
@@ -407,9 +407,9 @@ resource "aws_network_acl_rule" "app_allow_inbound" {
   network_acl_id = aws_network_acl.app.id
   rule_number    = 100
   egress         = false
-  protocol       = "tcp"
+  protocol       = "all"
   rule_action    = "allow"
-  cidr_block     = "10.10.3.0/23"
+  cidr_block     = "10.10.0.0/16"
   from_port      = 0
   to_port        = 65535
 }
@@ -417,9 +417,9 @@ resource "aws_network_acl_rule" "app_allow_db" {
   network_acl_id = aws_network_acl.app.id
   rule_number    = 200
   egress         = false
-  protocol       = "tcp"
+  protocol       = "all"
   rule_action    = "allow"
-  cidr_block     = "10.10.7.0/23"
+  cidr_block     = "10.10.0.0/16"
   from_port      = 0
   to_port        = 65535
 }
@@ -428,9 +428,9 @@ resource "aws_network_acl_rule" "db_allow_inbound" {
   network_acl_id = aws_network_acl.db.id
   rule_number    = 100
   egress         = false
-  protocol       = "tcp"
+  protocol       = "all"
   rule_action    = "allow"
-  cidr_block     = "10.10.5.0/23"
+  cidr_block     = "10.10.0.0/16"
   from_port      = 0
   to_port        = 65535
 }
@@ -439,7 +439,7 @@ resource "aws_network_acl_rule" "web_allow_outbound" {
   network_acl_id = aws_network_acl.web.id
   rule_number    = 100
   egress         = true
-  protocol       = "tcp"
+  protocol       = "all"
   rule_action    = "allow"
   cidr_block     = "0.0.0.0/0"
   from_port      = 0
@@ -449,7 +449,7 @@ resource "aws_network_acl_rule" "app_allow_outbound" {
   network_acl_id = aws_network_acl.app.id
   rule_number    = 100
   egress         = true
-  protocol       = "tcp"
+  protocol       = "all"
   rule_action    = "allow"
   cidr_block     = "0.0.0.0/0"
   from_port      = 0
@@ -459,7 +459,7 @@ resource "aws_network_acl_rule" "db_allow_outbound" {
   network_acl_id = aws_network_acl.db.id
   rule_number    = 100
   egress         = true
-  protocol       = "tcp"
+  protocol       = "all"
   rule_action    = "allow"
   cidr_block     = "0.0.0.0/0"
   from_port      = 0
