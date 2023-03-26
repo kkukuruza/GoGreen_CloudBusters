@@ -6,7 +6,7 @@ resource "aws_wafv2_web_acl" "gogreen_waf" {
   default_action {
     allow {}
   }
-
+/*
   rule {
   name     = "XSSRule"
   priority = 2
@@ -56,7 +56,7 @@ resource "aws_wafv2_web_acl" "gogreen_waf" {
       sampled_requests_enabled   = false
     }
   }
-
+*/
   rule {
     name     = "IPRateLimitRule"
     priority = 0
