@@ -55,11 +55,6 @@ module "ASG" {
   target_group_arns        = [module.ALB.target_group_arns]
 }
 
-#module "ASG_policy" {
-#  source   = "../child/ASG_policy/"
-#  asg_name = module.ASG.asg_name_
-#}
-
 module "EC2_Template_app" {
   source               = "../child/EC2_Template/"
   template_name        = "app"
