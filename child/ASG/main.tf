@@ -10,9 +10,6 @@ resource "aws_autoscaling_group" "go_green" {
     version = "$Latest"
   }
 
-  default_cooldown          = 300
-  cooldown                  = 60
-
   tag {
     key                 = "Name"
     value               = "${var.asg_tag}-tier"
