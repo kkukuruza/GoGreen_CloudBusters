@@ -389,7 +389,7 @@ resource "aws_network_acl_association" "db2" {
   subnet_id      = aws_subnet.private_subnet_6.id
   network_acl_id = aws_network_acl.db.id
 }
-/*
+
 # Define rules for each tier
 # Replace the CIDR blocks in the following rules with the appropriate CIDR blocks for your architecture.
 # Web Tier: Allow traffic from ALB and App Tier
@@ -455,4 +455,4 @@ resource "aws_network_acl_rule" "db_allow_outbound" {
   cidr_block     = "0.0.0.0/0"
   from_port      = 0
   to_port        = 65535
-}*/
+}
