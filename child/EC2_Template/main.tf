@@ -4,8 +4,6 @@ resource "aws_launch_template" "go_green_tmp" {
   image_id      = var.ami_id
   instance_type = var.instance_type
 
-  vpc_security_group_ids = var.security_group_ids
-
   iam_instance_profile {
     name = var.iam_instance_profile
   }
@@ -14,6 +12,7 @@ resource "aws_launch_template" "go_green_tmp" {
 
   network_interfaces {
     associate_public_ip_address = true
+    security_groups = var.security_group_ids
   }
 
   tags = {
