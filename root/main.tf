@@ -74,7 +74,7 @@ module "ALB_app" {
   source             = "../child/ALB/"
   alb_name           = "app"
   tg_name            = "app"
-  subnets            = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
+  subnets            = [module.VPC.public_subnet_1_id, module.VPC.public_subnet_2_id]
   vpc_id             = module.VPC.VPC_id
   security_group_ids = [module.VPC.security_group_ids[2]]
   target_group_port  = "80"
@@ -90,7 +90,7 @@ module "ASG_app" {
   vpc_zone_identifier = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
   target_group_arns   = [module.ALB_app.target_group_arns]
 }
-
+/*
 module "RDS" {
   source               = "../child/RDS"
   db_subnet_id         = ["${module.VPC.private_subnet_5_id}", "${module.VPC.private_subnet_6_id}"]
@@ -98,7 +98,7 @@ module "RDS" {
   kms_key_arn          = module.KMS.kms_key_arn
   lambda_function_payload_path = "../child/RDS/lambda_function_payload.zip"
 }
-/*
+
 module "WAF" {
   source  = "../child/WAF/"
   alb_arn = module.ALB.alb_arn

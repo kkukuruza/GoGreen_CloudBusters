@@ -16,7 +16,7 @@ resource "aws_autoscaling_group" "go_green" {
     propagate_at_launch = true 
   }
 }
-
+/*
 resource "aws_autoscaling_policy" "scale_out" {
   name                   = "scale-out-policy"
   autoscaling_group_name = aws_autoscaling_group.go_green.name
@@ -110,3 +110,4 @@ resource "aws_autoscaling_policy" "scale_down_policy" {
   cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.go_green.name
 }
+*/
