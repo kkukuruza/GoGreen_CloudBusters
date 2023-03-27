@@ -1,5 +1,5 @@
-output "user_pool_id" {
-  value       = aws_cognito_user_pool.gogreen_user_pool.id
+output "user_pool_arn" {
+  value       = aws_cognito_user_pool.gogreen_user_pool.arn
   description = "The ID of the created Cognito User Pool"
 }
 
