@@ -84,7 +84,7 @@ module "ASG_app" {
   vpc_zone_identifier = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
   target_group_arns   = [module.ALB_app.target_group_arns]
 }
-/*
+
 module "RDS" {
   source               = "../child/RDS"
   db_subnet_id         = ["${module.VPC.private_subnet_5_id}", "${module.VPC.private_subnet_6_id}"]
@@ -92,7 +92,7 @@ module "RDS" {
   kms_key_arn          = module.KMS.kms_key_arn
   lambda_function_payload_path = "../child/RDS/lambda_function_payload.zip"
 }
-
+/*
 module "WAF" {
   source  = "../child/WAF/"
   alb_arn = module.ALB.alb_arn
