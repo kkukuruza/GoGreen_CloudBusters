@@ -18,6 +18,11 @@ resource "aws_lb_target_group" "alb_tg" {
     enabled = true
     path    = "/"
   }
+
+  stickiness {
+    type     = "lb_cookie"
+    enabled  = false
+  }
 }
 
 resource "aws_lb_listener" "go_green_listener" {
