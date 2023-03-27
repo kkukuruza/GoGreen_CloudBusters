@@ -81,7 +81,7 @@ module "ASG_app" {
   asg_name            = "app"
   asg_tag             = "app"
   launch_template_id  = module.EC2_Template_app.launch_template_id
-  vpc_zone_identifier = [module.VPC.private_subnet_5_id, module.VPC.private_subnet_6_id]
+  vpc_zone_identifier = [module.VPC.private_subnet_3_id, module.VPC.private_subnet_4_id]
   target_group_arns   = [module.ALB_app.target_group_arns]
 }
 
