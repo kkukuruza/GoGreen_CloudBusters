@@ -92,12 +92,6 @@ module "RDS" {
   kms_key_arn          = module.KMS.kms_key_arn
   lambda_function_payload_path = "../child/RDS/lambda_function_payload.zip"
 }
-/*
-module "WAF" {
-  source  = "../child/WAF/"
-  alb_arn = module.ALB.alb_arn
-
-}*/
 
 module "Cognito" {
   source         = "../child/Cognito/"
