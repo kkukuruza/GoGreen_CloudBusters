@@ -28,7 +28,7 @@ module "S3" {
 module "EC2_Template" {
   source               = "../child/EC2_Template/"
   template_name        = "web"
-  ami_id               = "ami-0d4ae1b5c13f12aa0"
+  ami_id               = "ami-07bc04fdc13241142"
   security_group_ids   = [module.VPC.security_group_ids[1]]
   iam_instance_profile = module.IAM.ec2tos3_instance_profile_name
   tag_name             = "web"
@@ -58,7 +58,7 @@ module "ASG" {
 module "EC2_Template_app" {
   source               = "../child/EC2_Template/"
   template_name        = "app"
-  ami_id               = "ami-0d4ae1b5c13f12aa0"
+  ami_id               = "ami-07bc04fdc13241142"
   security_group_ids   = [module.VPC.security_group_ids[3]]
   iam_instance_profile = module.IAM.ec2tos3_instance_profile_name
   tag_name             = "app"
