@@ -294,10 +294,16 @@ resource "aws_security_group" "alb_private_sg" {
   description = "Allow inbound traffic on port 80 from WEB-SG"
   vpc_id      = aws_vpc.go_green_vpc.id
   ingress {
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
-    security_groups = [aws_security_group.web_sg.id]
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
    egress {
     from_port   = 0
@@ -397,9 +403,9 @@ resource "aws_network_acl_rule" "web_allow_inbound" {
   network_acl_id = aws_network_acl.web.id
   rule_number    = 100
   egress         = false
-  protocol       = "all"
+  protocol       = "tcp"
   rule_action    = "allow"
-  cidr_block     = "10.10.0.0/16"
+  cidr_block     = "0.0.0.0/0"
   from_port      = 0
   to_port        = 65535
 }
@@ -408,9 +414,9 @@ resource "aws_network_acl_rule" "app_allow_inbound" {
   network_acl_id = aws_network_acl.app.id
   rule_number    = 100
   egress         = false
-  protocol       = "all"
+  protocol       = "tcp"
   rule_action    = "allow"
-  cidr_block     = "10.10.0.0/16"
+  cidr_block     = "0.0.0.0/0"
   from_port      = 0
   to_port        = 65535
 }
@@ -419,9 +425,9 @@ resource "aws_network_acl_rule" "db_allow_inbound" {
   network_acl_id = aws_network_acl.db.id
   rule_number    = 100
   egress         = false
-  protocol       = "all"
+  protocol       = "tcp"
   rule_action    = "allow"
-  cidr_block     = "10.10.0.0/16"
+  cidr_block     = "0.0.0.0/0"
   from_port      = 0
   to_port        = 65535
 }
@@ -430,7 +436,7 @@ resource "aws_network_acl_rule" "web_allow_outbound" {
   network_acl_id = aws_network_acl.web.id
   rule_number    = 100
   egress         = true
-  protocol       = "all"
+  protocol       = "tcp"
   rule_action    = "allow"
   cidr_block     = "0.0.0.0/0"
   from_port      = 0
@@ -440,7 +446,7 @@ resource "aws_network_acl_rule" "app_allow_outbound" {
   network_acl_id = aws_network_acl.app.id
   rule_number    = 100
   egress         = true
-  protocol       = "all"
+  protocol       = "tcp"
   rule_action    = "allow"
   cidr_block     = "0.0.0.0/0"
   from_port      = 0
@@ -450,7 +456,7 @@ resource "aws_network_acl_rule" "db_allow_outbound" {
   network_acl_id = aws_network_acl.db.id
   rule_number    = 100
   egress         = true
-  protocol       = "all"
+  protocol       = "tcp"
   rule_action    = "allow"
   cidr_block     = "0.0.0.0/0"
   from_port      = 0
