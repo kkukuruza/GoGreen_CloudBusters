@@ -8,10 +8,11 @@ resource "aws_lb" "go_green_alb" {
 }
 
 resource "aws_lb_target_group" "alb_tg" {
- name     = "${var.tg_name}-tg"
-  port     = var.target_group_port
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  name                      = "${var.tg_name}-tg"
+  port                      = var.target_group_port
+  protocol                  = "HTTP"
+  vpc_id                    = var.vpc_id
+  load_balancing_algorithm_type = "round_robin"
 
   health_check {
     enabled = true
